@@ -2,12 +2,13 @@
 #
 # Table name: subs
 #
-#  id          :bigint           not null, primary key
-#  title       :string           not null
-#  description :string           not null
-#  moderator   :integer          not null
-#  created_at  :datetime         not null
-#  updated_at  :datetime         not null
+#  id           :bigint           not null, primary key
+#  title        :string           not null
+#  description  :string           not null
+#  moderator_id :integer          not null
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  post_id      :integer
 #
 class Sub < ApplicationRecord
     validates :title, :description, presence: true
@@ -15,8 +16,12 @@ class Sub < ApplicationRecord
 
     belongs_to :moderator, 
         primary_key: :id,
-        foreign_key: :moderator,
+        foreign_key: :moderator_id,
         class_name: :User
+
+    has_many :posts,
+        foreign_key: :post_id,
+        class_name: :Post
 
 
 end

@@ -9,10 +9,10 @@
 User.destroy_all
 Sub.destroy_all
 
-User.create!(username: 'Princess Peach', password: 'ilovemario')
+user = User.create!(username: 'Princess Peach', password: 'ilovemario')
 User.create!(username: 'Mario', password: 'ilovepeach')
 User.create!(username: 'Luigi', password: 'thethirdwheel')
 User.create!(username: 'Yoshi', password: 'mansbestfriend')
-Sub.create!(title: "SubTitile1", description: "Mario Brothers For Life", moderator: User.first.id)
+Sub.create!(title: "SubTitile1", description: "Mario Brothers For Life", bans:User.first)
 Sub.create!(title: "SubTitile2", description: "Mario Brothers For Life - N64", moderator: User.second.id)
 Sub.create!(title: "SubTitile3", description: "Peach is Good Too", moderator: User.third.id)
