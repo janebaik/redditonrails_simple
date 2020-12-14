@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    # before_action :ensure_logged_in, only: [:index, :show, :destroy, :edit]
+    before_action :ensure_logged_in, only: [:index, :show, :destroy, :edit]
     def new
         @user = User.new
         render :new
@@ -29,13 +29,15 @@ class UsersController < ApplicationController
 
     def update
         # saves it the db
-        @user = User.find_by(id: params[:id])
-        if @user.update_attributes(user_params)
+        @user = User.find(params[:id])
+        # if @user.update_attributes(user_params)
+        if @user.update
             redirect_to user_url(@user)
         else
             render :edit 
         end
     end
+
 
     def edit
         # brings up the page
