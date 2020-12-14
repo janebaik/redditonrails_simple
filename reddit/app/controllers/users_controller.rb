@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-    before_action :ensure_logged_in, only: [:index, :show, :destroy, :edit]
+    # before_action :ensure_logged_in, only: [:index, :show, :destroy, :edit]
     def new
         @user = User.new
         render :new
