@@ -27,23 +27,22 @@ class UsersController < ApplicationController
         render :show
     end
 
-    def update
-        # saves it the db
-        @user = User.find(params[:id])
-        # if @user.update_attributes(user_params)
-        if @user.update
-            redirect_to user_url(@user)
-        else
-            render :edit 
-        end
-    end
+    # def update
+    #     # saves it the db
+    #     @user = User.find(params[:id])
+    #     # if @user.update_attributes(user_params)
+    #     if @user.update(user_params)
+    #         redirect_to user_url(@user)
+    #     else
+    #         render :edit 
+    #     end
+    # end
 
-
-    def edit
-        # brings up the page
-        @user = User.find_by(id: params[:id])
-        render :edit
-    end
+    # def edit
+    #     # brings up the page
+    #     @user = User.find_by(id: params[:id])
+    #     render :edit
+    # end
 
     def destroy
         @user = User.find_by(id: params[:id])

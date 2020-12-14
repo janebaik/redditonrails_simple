@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: users
+#
+#  id              :bigint           not null, primary key
+#  username        :string
+#  session_token   :string
+#  password_digest :string
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#
 class User < ApplicationRecord
     #FIGVAPER
 
@@ -7,6 +18,11 @@ class User < ApplicationRecord
 
     after_initialize :ensure_session_token
     attr_reader :password
+
+    has_many :subs, 
+        primary_key: :id, 
+        foreign_key: :moderator, 
+        class_name: :Sub
 
 
     def self.find_by_credentials(username, password)

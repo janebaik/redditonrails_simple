@@ -9,6 +9,13 @@
 #                           PATCH  /users/:id(.:format)                                                                     users#update
 #                           PUT    /users/:id(.:format)                                                                     users#update
 #                           DELETE /users/:id(.:format)                                                                     users#destroy
+#                      subs GET    /subs(.:format)                                                                          subs#index
+#                           POST   /subs(.:format)                                                                          subs#create
+#                   new_sub GET    /subs/new(.:format)                                                                      subs#new
+#                  edit_sub GET    /subs/:id/edit(.:format)                                                                 subs#edit
+#                       sub GET    /subs/:id(.:format)                                                                      subs#show
+#                           PATCH  /subs/:id(.:format)                                                                      subs#update
+#                           PUT    /subs/:id(.:format)                                                                      subs#update
 #               new_session GET    /session/new(.:format)                                                                   sessions#new
 #              edit_session GET    /session/edit(.:format)                                                                  sessions#edit
 #                   session GET    /session(.:format)                                                                       sessions#show
@@ -24,7 +31,8 @@
 
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  
   resources :users 
-
+  resources :subs, except: [:destroy]
   resource :session
 end
