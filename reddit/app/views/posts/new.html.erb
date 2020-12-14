@@ -1,0 +1,22 @@
+<h1>Create a Post</h1>
+
+    <form action="<%= posts_url %>" action="POST">
+        <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+        <input type="hidden" name="post[sub_ids]" value="<%= post.subs.pluck %>">
+        <label>Title: 
+        <input type="text" name="post[title]">
+        </label>
+        <br>
+        <br>
+        <label>URL: 
+        <textarea name="post[url]"></textarea>
+        <br>
+        <br>
+        </label>
+        <label>Content: 
+        <textarea name="post[content]"></textarea>
+        <br>
+        <br>
+        </label>
+        <button>Submit Post</button>
+    </form>

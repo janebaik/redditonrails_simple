@@ -46,9 +46,15 @@ class PostsController < ApplicationController
         end
     end
 
+    def sub=(sub)
+    end
+
+    def sub
+    end
+
     private
     def post_params
-        params.require(:post).permit(:title, :url, :content)
+        params.require(:post).permit(:title, :url, :content, [:sub_ids])
     end
 
 

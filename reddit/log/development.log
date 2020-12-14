@@ -2448,3 +2448,83 @@ Migrating to ChangePost (20201214214453)
   ↳ bin/rails:9
   [1m[35m (0.7ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
   ↳ /Users/janebaik/.rbenv/versions/2.5.1/bin/annotate:23
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT pg_try_advisory_lock(6223636644477694260)[0m
+  ↳ bin/rails:9
+  [1m[35m (6.2ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
+Migrating to ChangeSubsMod (20201214212406)
+  [1m[35m (2.6ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (66.9ms)[0m  [1m[35mALTER TABLE "subs" RENAME COLUMN "moderator" TO "moderator_id"[0m
+  ↳ db/migrate/20201214212406_change_subs_mod.rb:3
+  [1m[35m (0.7ms)[0m  [1m[35mALTER INDEX "index_subs_on_moderator" RENAME TO "index_subs_on_moderator_id"[0m
+  ↳ db/migrate/20201214212406_change_subs_mod.rb:3
+  [1m[35m (9.3ms)[0m  [1m[35mALTER TABLE "subs" ADD "post_id" Integer[0m
+  ↳ db/migrate/20201214212406_change_subs_mod.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (5.0ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201214212406"]]
+  ↳ bin/rails:9
+  [1m[35m (69.8ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to AddIndex (20201214212754)
+  [1m[35m (0.8ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (42.3ms)[0m  [1m[35mCREATE  INDEX  "index_subs_on_post_id" ON "subs"  ("post_id")[0m
+  ↳ db/migrate/20201214212754_add_index.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (1.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201214212754"]]
+  ↳ bin/rails:9
+  [1m[35m (78.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreatePosts (20201214213200)
+  [1m[35m (0.3ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (50.7ms)[0m  [1m[35mCREATE TABLE "posts" ("id" bigserial primary key, "title" character varying NOT NULL, "url" character varying NOT NULL, "content" character varying NOT NULL, "sub_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20201214213200_create_posts.rb:3
+  [1m[35m (1.8ms)[0m  [1m[35mCREATE  INDEX  "index_posts_on_sub_id" ON "posts"  ("sub_id")[0m
+  ↳ db/migrate/20201214213200_create_posts.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201214213200"]]
+  ↳ bin/rails:9
+  [1m[35m (2.1ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to ChangeSubs (20201214213547)
+  [1m[35m (1.7ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (44.0ms)[0m  [1m[35mALTER TABLE "posts" ALTER COLUMN "url" DROP NOT NULL[0m
+  ↳ db/migrate/20201214213547_change_subs.rb:3
+  [1m[35m (2.1ms)[0m  [1m[35mALTER TABLE "posts" ALTER COLUMN "content" DROP NOT NULL[0m
+  ↳ db/migrate/20201214213547_change_subs.rb:4
+  [1m[36mActiveRecord::SchemaMigration Create (3.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201214213547"]]
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to ChangePost (20201214214453)
+  [1m[35m (2.2ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (10.1ms)[0m  [1m[35mALTER TABLE "posts" ADD "author_id" Integer[0m
+  ↳ db/migrate/20201214214453_change_post.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (3.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201214214453"]]
+  ↳ bin/rails:9
+  [1m[35m (3.0ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+Migrating to CreatePostSub (20201214221000)
+  [1m[35m (10.0ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (11.8ms)[0m  [1m[35mCREATE TABLE "post_subs" ("id" bigserial primary key, "sub_id" integer NOT NULL, "post_id" integer NOT NULL, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL)[0m
+  ↳ db/migrate/20201214221000_create_post_sub.rb:3
+  [1m[35m (59.9ms)[0m  [1m[35mCREATE  INDEX  "index_post_subs_on_sub_id" ON "post_subs"  ("sub_id")[0m
+  ↳ db/migrate/20201214221000_create_post_sub.rb:3
+  [1m[35m (2.1ms)[0m  [1m[35mCREATE  INDEX  "index_post_subs_on_post_id" ON "post_subs"  ("post_id")[0m
+  ↳ db/migrate/20201214221000_create_post_sub.rb:3
+  [1m[36mActiveRecord::SchemaMigration Create (12.9ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES ($1) RETURNING "version"[0m  [["version", "20201214221000"]]
+  ↳ bin/rails:9
+  [1m[35m (6.9ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[36mActiveRecord::InternalMetadata Load (1.1ms)[0m  [1m[34mSELECT  "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = $1 LIMIT $2[0m  [["key", "environment"], ["LIMIT", 1]]
+  ↳ bin/rails:9
+  [1m[35m (0.5ms)[0m  [1m[35mBEGIN[0m
+  ↳ bin/rails:9
+  [1m[35m (0.3ms)[0m  [1m[35mCOMMIT[0m
+  ↳ bin/rails:9
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT pg_advisory_unlock(6223636644477694260)[0m
+  ↳ bin/rails:9
+  [1m[35m (1.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ bin/rails:9
